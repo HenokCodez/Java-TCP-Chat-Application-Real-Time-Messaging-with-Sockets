@@ -11,7 +11,10 @@ public class Client {
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
-            // Thread to listen for messages from server
+            System.out.print("Enter your username: ");
+            String username = input.readLine();
+            writer.println(username);
+
             Thread listener = new Thread(() -> {
                 try {
                     String msg;

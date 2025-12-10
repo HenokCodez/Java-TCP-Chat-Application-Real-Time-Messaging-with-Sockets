@@ -8,17 +8,17 @@ public class Server {
     public static void main(String[] args) {
         int port = 5000;
 
-        try (ServerSocket server = new ServerSocket(port)) {
-            System.out.println("Server running...");
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server running on port " + port);
 
             while (true) {
-                Socket socket = server.accept();
+                Socket socket = serverSocket.accept();
                 ClientHandler handler = new ClientHandler(socket, clients);
                 clients.add(handler);
                 new Thread(handler).start();
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
